@@ -151,7 +151,7 @@
  
   environment.systemPackages = with pkgs;
   [
-  /**   
+  
   # Development tools
     home-manager
     dmenu
@@ -194,7 +194,7 @@
     rustdesk-flutter
     localsend
 
-    */
+    
 
    ];
 
