@@ -23,6 +23,8 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     #./modules/nixos/modules/gnome.nix
+
+    #inputs.home-manager.nixosModules.home-manager
     
   ];
     # Enable the X11 windowing system.
@@ -88,6 +90,7 @@
     };
   };
 
+
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
@@ -129,6 +132,7 @@
       extraGroups = ["wheel" "docker" "networkmanager"];
     };
   };
+  
    # Enable Java with OpenJFX
   programs.java = 
   {
@@ -144,9 +148,12 @@
   };
 
   # List packages installed in system profile. To search, run:
+ 
   environment.systemPackages = with pkgs;
   [
+  /**   
   # Development tools
+    home-manager
     dmenu
     xlockmore
     alock
@@ -174,15 +181,11 @@
     orca-slicer
     kicad-small
     gqrx
-    gnuradio3_8
+    #gnuradio3_8
 
     # Python Packages
     python3
     python312Packages.jupyterlab
-
-    #Music & Art
-    blender
-    krita
 
     # Office applications
     libreoffice-qt
@@ -190,6 +193,8 @@
     hunspellDicts.th_TH
     rustdesk-flutter
     localsend
+
+    */
 
    ];
 
@@ -207,5 +212,5 @@
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

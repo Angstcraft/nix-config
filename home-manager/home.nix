@@ -10,15 +10,26 @@
 }: {
   # You can import other home-manager modules here
   imports = [
+     ./global
+    ./features/desktop/hyprland
+    ./features/desktop/wireless
+    ./features/productivity
+    ./features/pass
+    ./features/games
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
+    #outputs.homeManagerModules.default
+    #outputs.homeManagerModules.nvf
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./modules/home-manager/modules.nix
+    #./modules/home-manager/default.nix
+    #./kitty.nix
+    #./nvf.nix
+   
   ];
 
   nixpkgs = {
@@ -54,15 +65,62 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+ 
+  
+    home.packages = with pkgs; [
+    # Development tools
+    home-manager
+    dmenu
+    xlockmore
+    alock
+    alacritty
+    git
+    qtcreator
+    vscodium
+    texliveFull
+    texstudio
+    nodejs
+    p7zip
+
+    # Java and Development Tools
+    eclipses.eclipse-java
+    scenic-view
+    scenebuilder
+
+    # C/C++ and Arduino Development
+    arduino-ide
+    gcc
+    gdb
+    cmake
+
+    # Engineering applications
+    orca-slicer
+    kicad-small
+    gqrx
+    # gnuradio3_8 (if needed, uncomment or remove)
+
+    # Python Packages
+    python3
+    python312Packages.jupyterlab
+
+    # Office applications
+    libreoffice-qt
+    hunspell
+    hunspellDicts.th_TH
+    rustdesk-flutter
+    localsend
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
-  # Nicely reload system units when changing configs
+  #programs.eclipse-java = true;
+  #programs.eclipse.plugins = ["The Complete Eclipse C/C++ IDE "];
+
+  # Nicely reload sy[stem units when changing configs
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 }
