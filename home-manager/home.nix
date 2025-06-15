@@ -25,6 +25,7 @@
     #./modules/home-manager/default.nix
     #./kitty.nix
     #./nvf.nix
+  
    
   ];
 
