@@ -10,12 +10,8 @@
 }: {
   # You can import other home-manager modules here
   imports = [
-     ./global
-    ./features/desktop/hyprland
-    ./features/desktop/wireless
-    ./features/productivity
-    ./features/pass
-    ./features/games
+   #./nvim.nix
+   #./alaritty.nix
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     #outputs.homeManagerModules.default
@@ -56,7 +52,28 @@
       allowUnfree = true;
     };
   };
+  /** 
+  let 
+    startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+      ${pkgs.waybar}/bin/waybar &
+      ${pkgs.swww}/bin/swww init & 
 
+      sleep 1
+
+      ${pkgs.swww}/bin/swww img ${./wallpaper.png}&
+      '';
+  in
+  wayland.windowManager.hyprland = {
+    enable = true;
+
+    settings = {
+
+    };
+  };
+
+*/
+
+#home.file."config/hypr/hyprland.conf".source = ./hyprland.conf;
   # TODO: Set your username
   home = {
     username = "alpha";
@@ -70,9 +87,6 @@
     home.packages = with pkgs; [
     # Development tools
     home-manager
-    dmenu
-    xlockmore
-    alock
     alacritty
     git
     qtcreator
@@ -115,12 +129,10 @@
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
-  #programs.eclipse-java = true;
-  #programs.eclipse.plugins = ["The Complete Eclipse C/C++ IDE "];
 
   # Nicely reload sy[stem units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  
   home.stateVersion = "25.05";
 }

@@ -33,6 +33,7 @@
   enable = true;
   displayManager.gdm.enable = true;
   desktopManager.gnome.enable = true;
+  
   windowManager.spectrwm.enable = true;
 
 };
@@ -40,6 +41,10 @@
     layout = "de";
     variant = "";
   };
+
+  programs.hyprland.enable = true;
+  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+ 
 
   # Configure console keymap
   console.keyMap = "de";
@@ -140,6 +145,10 @@
     package = pkgs.openjfx23; # Adjust JDK as needed
   };
 
+programs.niri = {
+    enable = true;
+    package = pkgs.niri; # In case you want to override niri.
+  };
   # Enable Firefox (using Librewolf)
   programs.firefox = 
   {
@@ -151,12 +160,19 @@
  
   environment.systemPackages = with pkgs;
   [
+    (waybar.overrideAttrs (oldAttrs : {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true"];
+    })
+    )
+    dunst
+    libnotify
+    swww
+    rofi-wayland
+    kitty
+
   
   # Development tools
     home-manager
-    dmenu
-    xlockmore
-    alock
     alacritty
     git
     qtcreator
@@ -168,8 +184,8 @@
 
     # Java and Development Tools
     eclipses.eclipse-java
-    scenic-view
-    scenebuilder
+   # scenic-view
+   # scenebuilder
 
     # C/C++ and Arduino Development
     arduino-ide           
