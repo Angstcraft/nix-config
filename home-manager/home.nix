@@ -88,6 +88,7 @@
     home.packages = with pkgs; [
     # Development tools
     home-manager
+    /** 
     alacritty
     git
     qtcreator
@@ -121,9 +122,12 @@
     # Office applications
     libreoffice-qt
     hunspell
-    hunspellDicts.th_TH
-    rustdesk-flutter
-    localsend
+ #  # hunspellDicts.th_TH
+    #rustdesk-flutter
+  
+   # localsend
+
+   */
   ];
 
   # Enable home-manager and git

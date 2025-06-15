@@ -5,11 +5,9 @@
 
 Here's my NixOS/home-manager config files. Requires [Nix flakes](https://nixos.wiki/wiki/Flakes).
 
-Looking for something simpler to start out with flakes? Try [my starter config repo](https://github.com/Misterio77/nix-starter-config).
-
 **Highlights**:
 
-- Multiple **NixOS configurations**, including **desktop**, **laptop**, **server**
+- Multiple **NixOS configurations**, including **laptop**, **server**, **mac :(**
 - **Opt-in persistence** through impermanence + blank snapshotting
 - **Encrypted** single **BTRFS** partition
 - Fully **declarative** **self-hosted** stuff
@@ -106,9 +104,6 @@ Nixy stuff:
 
 Let me know if you have any questions about them :)
 
-## Unixpornish stuff
-![fakebusy](https://i.imgur.com/PZ4L7TR.png)
-![clean](https://i.imgur.com/T5FjqbZ.jpg)
 
 That's how my hyprland desktop setup look like (as of 2022 July).
 

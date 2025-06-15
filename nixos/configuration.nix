@@ -34,7 +34,7 @@
   displayManager.gdm.enable = true;
   desktopManager.gnome.enable = true;
   
-  windowManager.spectrwm.enable = true;
+  windowManager.xmonad.enable = true;
 
 };
   services.xserver.xkb = {
@@ -42,8 +42,8 @@
     variant = "";
   };
 
-  programs.hyprland.enable = true;
-  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  #programs.hyprland.enable = true;
+  #programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
  
 
   # Configure console keymap
@@ -209,6 +209,7 @@ programs.niri = {
     hunspellDicts.th_TH
     rustdesk-flutter
     localsend
+    
 
     
 
