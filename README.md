@@ -105,6 +105,5 @@ Nixy stuff:
 Let me know if you have any questions about them :)
 
 
-That's how my hyprland desktop setup look like (as of 2022 July).
 
 

@@ -1,4 +1,3 @@
-# This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
@@ -8,25 +7,23 @@
   pkgs,
   ...
 }: {
-  # You can import other home-manager modules here
   imports = [
-   #./nvim.nix
-   #./alaritty.nix
+
+    ./Programs/Default.nix
+    ./Dev/Default.nix
+    ./tmux.nix
+    ./manage/default.nix
+   # ./nixvim.nix
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     #outputs.homeManagerModules.default
-    #outputs.homeManagerModules.nvf
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
-    #./modules/home-manager/default.nix
-    #./kitty.nix
-    #./nvf.nix
-  
-   
+
+
   ];
 
   nixpkgs = {
@@ -53,46 +50,42 @@
       allowUnfree = true;
     };
   };
-  /** 
-  let 
-    startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-      ${pkgs.waybar}/bin/waybar &
-      ${pkgs.swww}/bin/swww init & 
 
-      sleep 1
 
-      ${pkgs.swww}/bin/swww img ${./wallpaper.png}&
-      '';
-  in
-  wayland.windowManager.hyprland = {
-    enable = true;
 
-    settings = {
 
-    };
-  };
-
-*/
 
 #home.file."config/hypr/hyprland.conf".source = ./hyprland.conf;
-  # TODO: Set your username
   home = {
     username = "alpha";
     homeDirectory = "/home/alpha";
   };
 
+    programs.home-manager.enable = true;
+  programs.git.enable = true;
+
+ programs.firefox =
+  {
+    enable = true;
+    package = pkgs.librewolf;
+  };
+
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
- 
-  
+
+
     home.packages = with pkgs; [
     # Development tools
-    home-manager
-    /** 
-    alacritty
+    #home-manager
+
+
+
+
+  # Development tools
+    #home-manager
+
     git
     qtcreator
-    vscodium
     texliveFull
     texstudio
     nodejs
@@ -104,16 +97,16 @@
     scenebuilder
 
     # C/C++ and Arduino Development
-    arduino-ide
-    gcc
-    gdb
-    cmake
+   # arduino-ide
+                    # GCC for C/C++ compilation
+    gdb                    # GNU Debugger for C/C++
+    cmake                  # Build system for C/C++
 
     # Engineering applications
     orca-slicer
     kicad-small
     gqrx
-    # gnuradio3_8 (if needed, uncomment or remove)
+    #gnuradio3_8
 
     # Python Packages
     python3
@@ -122,22 +115,18 @@
     # Office applications
     libreoffice-qt
     hunspell
- #  # hunspellDicts.th_TH
-    #rustdesk-flutter
-  
-   # localsend
+    hunspellDicts.th_TH
+    rustdesk-flutter
+    localsend
 
-   */
+
+
   ];
-
-  # Enable home-manager and git
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
 
 
   # Nicely reload sy[stem units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  
+
   home.stateVersion = "25.05";
 }

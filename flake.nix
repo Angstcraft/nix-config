@@ -19,11 +19,21 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
+     plover-flake.url = "github:openstenoproject/plover-flake";
+
+     nixvim = {
+      url = "github:nix-community/nixvim/";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
   };
 
   outputs = {
     self,
     nixpkgs,
+    nixvim,
     home-manager,
     ...
   } @ inputs: let
@@ -44,7 +54,7 @@
     # Accessible through 'nix build', 'nix shell', etc
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
-    
+
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
@@ -60,20 +70,23 @@
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
+
     nixosConfigurations = {
-      # FIXME replace with your hostname
-      nixos = nixpkgs.lib.nixosSystem {
+      nixos = nixpkgs.lib.nixosSystem
+      {
         specialArgs = {inherit inputs outputs;};
-        modules = [
-         
-          ./nixos/configuration.nix
-           #inputs.home-manager.nixosModules.home-manager
-          
-        ];
+        modules = [ ./hosts/nixos/configuration.nix ];
       };
+
+      mac = nixpkgs.lib.nixosSystem
+      {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./hosts/nixos/configuration.nix];
+      };
+
+
     };
 
-    
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
@@ -85,11 +98,11 @@
           ./home-manager/home.nix
          # ./modules/home-manager/default.nix
         ];
-       
+
       };
     };
 
-    
+
 
   };
 }
