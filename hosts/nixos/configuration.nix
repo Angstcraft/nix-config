@@ -33,10 +33,8 @@
 
 
 
-  services.xserver.enable = true;
+services.xserver.enable = true;
 services.xserver.displayManager.lightdm.enable = true;
-services.xserver.windowManager.i3.enable = true;
-services.desktopManager.plasma6.enable = true;
 programs.hyprland.enable = true;
   # Configure console keymap
   console.keyMap = "de";

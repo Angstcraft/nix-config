@@ -14,13 +14,13 @@ in {
       ];
 
       decoration = {
-        rounding = 10;
+        rounding = 2;
       };
 
       general = {
         border_size = 1;
         gaps_out = [0 10 10 10];
-        "col.active_border" = "0xf38ba8ff";
+        "col.active_border" = "0xff006400";
         animation = [
           "workspaces, 1, 2.5, easeOutQuart"
           "windows, 1, 2.5, easeOutQuart, slide"
@@ -62,7 +62,9 @@ in {
         " __GLX_VENDOR_LIBRARY_NAME,nvidia"
       ];
 
-      exec-once = [
+      exec-once =
+      [
+        "${pkgs.hyprpaper}/bin/hyprpaper --file ${wallpaper}"
         "sleep 20 && ${pkgs.waybar}/bin/waybar"
         "nicotine -n"
         "${pkgs.clipse}/bin/clipse -listen"
@@ -72,13 +74,23 @@ in {
         "${pkgs.mako}/bin/mako"
       ];
 
-      windowrulev2 = [
+
+      windowrulev2 =
+       [
+        "opacity 0.80 0.80,class:(libreoffice)$"
+        "opacity 0.80 0.80,class:(rofi)$"
+        "opacity 0.80 0.80,class:^(dolphin)$"
+        "opacity 0.80 0.80,class:^(firefox)$"
+        "opacity 0.80 0.80,class:^(Eclipse)$"
+        "opacity 0.80 0.80,class:^(kitty)$"
+        "opacity 0.80 0.80,class:^(VSCodium)$"
         "workspace 3 silent, class:(steam)"
         "workspace 2 silent, class:(vesktop)"
         "workspace 1 silent, class:(firefox)"
         "float,class:(clipse)"
         "size 622 652,class:(clipse)"
         "noblur, class:^(plugdata)$"
+
       ];
 
       workspace = [
@@ -96,7 +108,7 @@ in {
           "$mod, C, exec, rofi -show calc -modi calc -no-show-match -no-sort"
           "$mod, Period, exec, rofi -modi emoji -show emoji"
 
-          "$mod, E, exec, nemo" # File manager
+          "$mod, E, exec, dolphin" # File manager
 
           "$mod, Q, killactive"
           "$mod, TAB, workspace, previous"
@@ -105,8 +117,13 @@ in {
           "$mod, P, togglefloating"
           "$mod, F, fullscreen"
 
+
+                  ", XF86AudioMute, exec, ${pkgs.pulsemixer}/bin/pulsemixer --toggle-mute"
           ",XF86AudioLowerVolume, exec, ${pkgs.pulsemixer}/bin/pulsemixer --change-volume -5"
           ",XF86AudioRaiseVolume, exec, ${pkgs.pulsemixer}/bin/pulsemixer --change-volume +5 --max-volume 100"
+
+          ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
+          ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
 
           ",XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
 
@@ -133,164 +150,5 @@ in {
       wallpaper = [",${wallpaper}"];
     };
   };
-/**
-  programs.waybar = {
-    enable = true;
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        height = 15;
-        output = "DP-1";
-        modules-left = ["hyprland/workspaces"];
-        modules-center = ["hyprland/window" "custom/waybar-mpris"];
-        modules-right = ["pulseaudio" "clock"];
 
-        "hyprland/window" = {
-          separate-outputs = true;
-        };
-
-        "hyprland/workspaces" = {
-          persistent-workspaces = {
-            "HDMI-A-1" = [2 3];
-            "DP-1" = [1];
-          };
-        };
-
-        "custom/waybar-mpris" = {
-          "return-type" = "json";
-          "exec" = "waybar-mpris --position --autofocus --pause '' --play '' --separator '  '";
-          "on-click" = "waybar-mpris --send toggle";
-          "on-click-right" = "waybar-mpris --send player-next";
-          "on-scroll-up" = "waybar-mpris --send next";
-          "on-scroll-down" = "waybar-mpris --send prev";
-          "escape" = true;
-          "hide-empty-text" = true;
-        };
-      };
-      secondaryBar = {
-        layer = "top";
-        position = "top";
-        height = 15;
-        output = "HDMI-A-1";
-        modules-left = ["hyprland/workspaces"];
-        modules-center = ["hyprland/window"];
-        modules-right = ["cpu" "memory"];
-
-        "hyprland/window" = {
-          separate-outputs = true;
-        };
-
-        "hyprland/workspaces" = {
-          persistent-workspaces = {
-            "HDMI-A-1" = [2 3];
-            "DP-1" = [1];
-          };
-        };
-      };
-    };
-    style =
-      #css
-      ''
-        * {
-          background: transparent;
-          border: none;
-             border-radius: 0;
-             font-family: Roboto, Helvetica, Arial, sans-serif;
-             font-size: 13px;
-             min-height: 16px;
-          padding: 0 2px;
-          margin: 1px 0;
-        }
-
-
-        tooltip {
-           background: rgb(30, 30, 46);
-           border: 1px solid rgb(30, 30, 46);
-        }
-        tooltip label {
-           color: rgb(205, 214, 244);
-        }
-
-        #workspaces button {
-             padding: 0 5px;
-             background: rgb(30, 30, 48);
-             color: rgb(205, 214, 244);
-             border-bottom: 3px solid transparent;
-             border-top: 3px solid transparente;
-        }
-
-        #workspaces button.active {
-             background: rgb(49, 50, 68);
-             border-bottom: 3px solid rgb(203, 166, 247);
-             border-top: 3px solid rgb(203, 166, 247);
-             color: rgb(205, 214, 244);
-        }
-
-        #workspaces button.urgent {
-             background: rgb(49, 50, 68);
-             border-bottom: 3px solid rgb(243, 139, 168);
-             border-top: 3px solid rgb(243, 139, 168);
-             color: rgb(205, 214, 244);
-        }
-
-        #workspaces button.visible {
-             background: rgb(49, 50, 68);
-             border-bottom: 3px solid rgb(203, 166, 247);
-             color: rgb(205, 214, 244);
-        }
-
-        label.module{
-            padding: 0 10px;
-            background: rgb(30, 30, 46);
-            color: rgb(205, 214, 244);
-            border-radius: 5px;
-        }
-
-        #window {
-            background: rgb(30, 30, 46);
-            color: rgb(205, 214, 244);
-            border-radius: 5px;
-            padding: 0 10px;
-            margin: 0 5px;
-        }
-
-        window#waybar.empty #window {
-            background-color: transparent;
-        }
-
-        #clock {
-             background-color: rgb(137, 180, 250);
-             color: rgb(30, 30, 46);
-             margin: 0 2px;
-        }
-
-        #pulseaudio {
-             background-color: rgb(243, 139, 168);
-             color: rgb(30, 30, 46);
-             margin: 0 2px;
-        }
-
-        #cpu {
-             background-color: rgb(203, 166, 247);
-             color: rgb(30, 30, 46);
-             margin: 0 2px;
-        }
-
-        #memory {
-             background-color: rgb(243, 139, 168);
-             color: rgb(30, 30, 46);
-             margin: 0 2px;
-        }
-
-        @keyframes blink {
-             to {
-                 background-color: rgb(205, 214, 244);
-                 color: black;
-             }
-         }
-
-      '';
-  };
-  */
 }

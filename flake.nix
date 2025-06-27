@@ -28,6 +28,8 @@
     };
 
 
+    nvf.url = "github:notashelf/nvf";
+
   };
 
   outputs = {

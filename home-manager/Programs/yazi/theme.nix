@@ -24,7 +24,7 @@
   confirm = {
     border = { fg = "gray"; };
     title = {
-      fg = "blue";
+      fg = "green"; #g
       bold = true;
     };
     content = {
@@ -46,9 +46,9 @@
     btn_labels = [ "  [Y]es  " "  (N)o  " ];
   };
   spot = {
-    border = { fg = "blue"; };
-    title = { fg = "blue"; };
-    tbl_col = { fg = "blue"; };
+    border = { fg = "green"; }; #3 g
+    title = { fg = "green"; };
+    tbl_col = { fg = "green"; };
     tbl_cell = {
       fg = "yellow";
       reversed = true;

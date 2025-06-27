@@ -1,8 +1,10 @@
 {pkgs, ...}: {
   programs.firefox = {
     enable = true;
+
     nativeMessagingHosts = [pkgs.tridactyl-native];
-    profiles.theo = {
+    package = pkgs.librewolf;
+    profiles.alpha = {
       isDefault = true;
       userChrome =
         #css

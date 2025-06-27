@@ -64,12 +64,6 @@
     programs.home-manager.enable = true;
   programs.git.enable = true;
 
- programs.firefox =
-  {
-    enable = true;
-    package = pkgs.librewolf;
-  };
-
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
 
@@ -85,11 +79,13 @@
     #home-manager
 
     git
+    nemo
     qtcreator
     texliveFull
     texstudio
     nodejs
-    p7zip
+
+    xarchiver
 
     # Java and Development Tools
     eclipses.eclipse-java
