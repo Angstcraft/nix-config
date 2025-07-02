@@ -1,0 +1,6 @@
+{
+  imports =
+  [
+    ./FastFetch/default.nix
+  ];
+}

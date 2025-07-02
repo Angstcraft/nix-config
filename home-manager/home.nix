@@ -10,9 +10,8 @@
   imports = [
 
     ./Programs/Default.nix
-    ./Dev/Default.nix
-    ./tmux.nix
-    ./manage/default.nix
+    ./Window-Manager/Default.nix
+
    # ./nixvim.nix
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
@@ -69,51 +68,31 @@
 
 
     home.packages = with pkgs; [
-    # Development tools
-    #home-manager
-
-
-
-
-  # Development tools
-    #home-manager
-
     git
-    nemo
+
     qtcreator
     texliveFull
     texstudio
     nodejs
 
-    xarchiver
 
-    # Java and Development Tools
-    eclipses.eclipse-java
+     eclipses.eclipse-java
+     jetbrains.idea-community-bin
+
+
+
     scenic-view
     scenebuilder
-
-    # C/C++ and Arduino Development
-   # arduino-ide
-                    # GCC for C/C++ compilation
-    gdb                    # GNU Debugger for C/C++
-    cmake                  # Build system for C/C++
-
-    # Engineering applications
-    orca-slicer
-    kicad-small
+    gdb
+    cmake
     gqrx
-    #gnuradio3_8
-
-    # Python Packages
     python3
     python312Packages.jupyterlab
-
-    # Office applications
     libreoffice-qt
     hunspell
     hunspellDicts.th_TH
     rustdesk-flutter
-    localsend
+    signal-cli
 
 
 

@@ -1,0 +1,6 @@
+{
+  imports =
+  [
+    ./Hyprland/Default.nix
+  ];
+}

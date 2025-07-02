@@ -1,7 +1,10 @@
 {
   imports =
   [
-    ./fastfetch/default.nix
-    ./yazi/default.nix
+    ./Browser/Default.nix
+    ./Development/Default.nix
+    ./Engineer/Default.nix
+    ./File-Manager/Default.nix
+    ./Misc/Default.nix
   ];
 }
