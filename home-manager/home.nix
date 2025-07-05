@@ -10,7 +10,7 @@
   imports = [
 
     ./Programs/Default.nix
-    ./Window-Manager/Default.nix
+    ./Desktops/Default.nix
 
    # ./nixvim.nix
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -63,8 +63,6 @@
     programs.home-manager.enable = true;
   programs.git.enable = true;
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
 
 
     home.packages = with pkgs; [
@@ -76,8 +74,15 @@
     nodejs
 
 
-     eclipses.eclipse-java
+  #  qutebrowser
+#
+
+
+
      jetbrains.idea-community-bin
+      eclipses.eclipse-dsl
+
+      inputs.zen-browser.packages."${system}".default
 
 
 

@@ -20,15 +20,20 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-     plover-flake.url = "github:openstenoproject/plover-flake";
+      # Neovim-Nightly
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    #Nixvim
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
-     nixvim = {
-      url = "github:nix-community/nixvim/";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
+    # Spicetify-cli
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     nvf.url = "github:notashelf/nvf";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
   };
 
