@@ -1,110 +1,128 @@
 {
   config,
   pkgs,
-  inputs,
   ...
-}:
-
-let
-  inherit (config.lib.formats.rasi) mkLiteral;
-in
-{
-
-  home.packages = with pkgs; [
-    rofi-power-menu
-  ];
-
+}: {
   programs.rofi = {
     enable = true;
+    cycle = true;
     package = pkgs.rofi-wayland;
-
+    plugins = with pkgs; [
+      (rofi-calc.override {
+        rofi-unwrapped = rofi-wayland-unwrapped;
+      })
+      rofi-emoji-wayland
+    ];
     extraConfig = {
-      modi = "drun";
-      font = "Dejavu Sans 12";
+      modi = "drun,calc,window,emoji,run";
+      sidebar-mode = true;
+      terminal = "footclient";
       show-icons = true;
-      disable-history = true;
-      hover-select = true;
-      bw = 0;
-      display-drun = "";
-      display-window = "";
-      display-combi = "";
-      terminal = "kitty";
-      drun-match-fields = "name";
-      drun-display-format = "{name}";
-      me-select-entry = "";
-      me-accept-entry = "MousePrimary";
-      kb-cancel = "Escape,MouseMiddle";
+      kb-remove-char-back = "BackSpace";
+      kb-accept-entry = "Control+m,Return,KP_Enter";
+      kb-mode-next = "Control+l";
+      kb-mode-previous = "Control+h";
+      kb-row-up = "Control+k,Up";
+      kb-row-down = "Control+j,Down";
+      kb-row-left = "Control+u";
+      kb-row-right = "Control+d";
+      kb-delete-entry = "Control+semicolon";
+      kb-remove-char-forward = "";
+      kb-remove-to-sol = "";
+      kb-remove-to-eol = "";
+      kb-mode-complete = "";
+      display-drun = "";
+      display-run = "";
+      display-emoji = "󰞅";
+      display-calc = "󰃬";
+      display-window = "";
+      display-filebrowser = "";
+      drun-display-format = "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+      window-format = "{w} · {c} · {t}";
     };
-
     theme = {
-
-      window = {
-        transparency = "clear";
-        theme = "catppuccin mocha";
+      "*" = {
+        font = "JetBrainsMono Nerd Font 12";
+        background = "#1e1e2e"; # Dark background
+        border = "#313244"; # Dark border
+        foreground = "#cdd6f4"; # Light foreground text
+        foreground-alt = "#45475a"; # Secondary light color
+        selected = "#94e2d5"; # Selected item color (light cyan)
+        active = "#a6e3a1"; # Active item color (light green)
+        urgent = "#89b4fa"; # Urgent item color (light blue)
+      };
+      "window" = {
+        transparency = "real";
         location = "center";
         anchor = "center";
-        fullscreen = false;
-        width = 500;
-        x-offset = 0;
-        y-offset = 0;
-        enabled = true;
-        margin = 0;
-        padding = 0;
-        border = mkLiteral "0px solid";
-        border-radius = 0;
-        cursor = mkLiteral "default";
-        background-color = "rgba(0, 0, 0, 0.8)";
+        fullscreen = "false";
+        width = "900px";
+        x-offset = "0px";
+        y-offset = "0px";
+        enabled = "true";
+        border-radius = "10px";
+        border = "2px solid";
+        border-color = "#313244"; # Dark border color
+        cursor = "default";
+        background-color = "#1e1e2e"; # Dark background
       };
-
-      mainbox = {
+      "mainbox" = {
         enabled = true;
-        spacing = 10;
-        margin = 0;
-        padding = 30;
-        border = mkLiteral "0px solid";
-        border-radius = mkLiteral "0px 0px 0px 0px";
-        background-color = "rgba(0, 0, 0, 0.8)";
-      };
-
-      inputbar = {
-        enabled = true;
-        spacing = 10;
-        margin = 0;
-        padding = 0;
-        border = mkLiteral "0px solid";
-        border-radius = 0;
+        spacing = "0px";
+        margin = "0px";
+        padding = "0px";
+        border = "0px solid";
+        border-radius = "0px 0px 0px 0px";
+        border-color = "#313244";
         background-color = "transparent";
-        children = [
-          "textbox-prompt-colon"
-          "entry"
-        ];
+        children = "[inputbar, message, listview]";
       };
-
-      prompt = {
+      "inputbar" = {
         enabled = true;
+        spacing = "0px";
+        margin = "0px";
+        padding = "0px";
+        border = "0px 0px 2px 0px";
+        border-radius = "0px";
+        border-color = "#313244";
+        background-color = "transparent";
+        text-color = "#cdd6f4"; # Foreground color for text
+        children = "[prompt, entry]";
       };
-
-      "textbox-prompt-colon" = {
+      "prompt" = {
         enabled = true;
-        expand = false;
-        str = " ";
-        font = "JetBrainsMono Nerd Font 12";
+        padding = "15px";
+        border = "0px 2px 0px 0px";
+        border-radius = "0px";
+        border-color = "#45475a"; # Alt background
+        background-color = "inherit";
+        text-color = "inherit";
       };
-
-      entry = {
+      "entry" = {
         enabled = true;
+        padding = "15px";
+        background-color = "inherit";
+        text-color = "inherit";
         cursor = "text";
-        placeholder = "Search...";
+        placeholder-color = "inherit";
       };
-
-      "case-indicator" = {
-        enabled = true;
+      "button" = {
+        padding = "10px";
+        border-radius = "0px";
+        border = "0px solid";
+        border-color = "#313244";
+        background-color = "transparent";
+        text-color = "inherit";
+        cursor = "pointer";
       };
-
-      listview = {
+      "button selected" = {
+        background-color = "#94e2d5"; # Selected item background
+        text-color = "#cdd6f4"; # Foreground color
+      };
+      "listview" = {
         enabled = true;
         columns = 1;
-        lines = 5;
+        lines = 12;
         cycle = true;
         dynamic = true;
         scrollbar = false;
@@ -112,93 +130,61 @@ in
         reverse = false;
         fixed-height = true;
         fixed-columns = true;
-        spacing = 5;
-        margin = 0;
-        padding = 0;
-        border = mkLiteral "0px solid";
-        border-radius = 0;
+        spacing = "0px";
+        margin = "0px";
+        padding = "0px";
+        border = "0px solid";
+        border-radius = "0px";
+        border-color = "#313244";
+        background-color = "transparent";
+        text-color = "#cdd6f4"; # Foreground color
         cursor = "default";
       };
-
-      scrollbar = {
-        handle-width = 5;
-        border-radius = 8;
-      };
-
-      element = {
+      "element" = {
         enabled = true;
-        spacing = 8;
-        margin = 0;
-        padding = 8;
-        border = mkLiteral "0px solid";
-        border-radius = 4;
+        spacing = "10px";
+        margin = "0px";
+        padding = "8px 15px";
+        border = "0px 0px 0px 0px";
+        border-radius = "0px";
+        border-color = "#313244";
+        background-color = "transparent";
+        text-color = "#cdd6f4"; # Foreground color
         cursor = "pointer";
       };
-
-      "element-icon" = {
-        size = 24;
-        cursor = "inherit";
+      "element normal.normal" = {
+        background-color = "inherit";
+        text-color = "inherit";
       };
-
-      "element-text" = {
-        highlight = "inherit";
-        cursor = "inherit";
-        vertical-align = 1;
-        horizontal-align = 0;
-      };
-
-      button = {
-        padding = 8;
-        border = mkLiteral "0px solid";
-        border-radius = 4;
-        cursor = "pointer";
-      };
-
-      message = {
-        enabled = true;
-        margin = 0;
-        padding = 0;
-        border = mkLiteral "0px solid";
-        border-radius = mkLiteral "0px 0px 0px 0px";
-      };
-
-      textbox = {
-        padding = 8;
-        border = mkLiteral "0px solid";
-        border-radius = 4;
-        vertical-align = 1;
-        horizontal-align = 0;
-        highlight = "none";
-        blink = true;
-        markup = true;
-      };
-
-      "error-message" = {
-        padding = 10;
-        border = mkLiteral "0px solid";
-        border-radius = 4;
+      "element selected.normal" = {
+        background-color = "#94e2d5"; # Selected item color
+        text-color = "#1e1e2e"; # Dark background for selected item
       };
     };
-
-
-    plugins = [pkgs.rofi-emoji pkgs.rofi-calc];
-    extraConfig = {
-
-      icon-theme = "Oranchelo";
-
-
-
-      location = 0;
-
-      hide-scrollbar = true;
-
-      display-Network = " 󰤨  Network";
-      sidebar-mode = true;
   };
-
-
-
-
-
-};
+  xdg.dataFile."rofi/themes/preview.rasi".text = ''
+    @theme "custom"
+    icon-current-entry {
+      enabled: true;
+      size: 50%;
+      dynamic: true;
+      padding: 10px;
+      background-color: inherit;
+    }
+    listview-split {
+      background-color: transparent;
+      border-radius: 0px;
+      cycle: true;
+      dynamic : true;
+      orientation: horizontal;
+      border: 0px solid;
+      children: [listview, icon-current-entry];
+    }
+    listview {
+      lines: 10;
+    }
+    mainbox {
+      children: [inputbar, listview-split];
+    }
+  '';
 }

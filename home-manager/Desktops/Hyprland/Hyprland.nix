@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  wallpaper = ./forest.png;
+  wallpaper = ./mount.jpg;
 in {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -14,18 +14,19 @@ in {
       ];
 
       decoration = {
-        rounding = 2;
+        rounding = 0;
       };
 
       general = {
         border_size = 0;
-        gaps_out = [0 10 10 10];
+        gaps_out = [0 0 0 0];
         "col.active_border" = "0xff006400";
-        animation = [
+         animation = [
           "workspaces, 1, 2.5, easeOutQuart"
           "windows, 1, 2.5, easeOutQuart, slide"
           "fade, 1, 2, easeOutQuart"
         ];
+
         snap = {
           enabled = true;
         };
@@ -53,7 +54,7 @@ in {
         accel_profile = "flat";
         kb_options = "compose:menu";
         kb_layout = "de";
-              };
+      };
 
       env = [
         "LIBVA_DRIVER_NAME,nvidia"
@@ -62,8 +63,7 @@ in {
         " __GLX_VENDOR_LIBRARY_NAME,nvidia"
       ];
 
-      exec-once =
-      [
+      exec-once = [
         "${pkgs.hyprpaper}/bin/hyprpaper --file ${wallpaper}"
         "sleep 20 && ${pkgs.waybar}/bin/waybar"
         "nicotine -n"
@@ -75,13 +75,12 @@ in {
         "${pkgs.mako}/bin/mako"
       ];
 
-
-      windowrulev2 =
-       [
-         "opacity 0.80 0.80,class:(qute browser)$"
-         "opacity 0.80 0.80,class:(intellij)$"
+      windowrulev2 = [
+        "opacity 0.80 0.80,class:(qutebrowser)$"
+        "opacity 0.80 0.80,class:(intellij)$"
+         "opacity 0.80 0.80,class:^(wofi)$"
         "opacity 0.80 0.80,class:(jetbrains.idea-community)$"
-        "opacity 0.80 0.80,class:(rofi)$"
+
         "opacity 0.80 0.80,class:^(dolphin)$"
         "opacity 0.80 0.80,class:^(firefox)$"
         "opacity 0.80 0.80,class:^(Eclipse)$"
@@ -93,7 +92,6 @@ in {
         "float,class:(clipse)"
         "size 622 652,class:(clipse)"
         "noblur, class:^(plugdata)$"
-
       ];
 
       workspace = [
@@ -105,11 +103,13 @@ in {
       bind =
         [
           "$mod, Return, exec, kitty"
+          "$mod, D, exec, wofi"
+
           "$mod, R, exec, kitty --class ${pkgs.clipse}/bin/clipse -e 'clipse'"
 
-          "$mod, D, exec, rofi -show drun"
-          "$mod, C, exec, rofi -show calc -modi calc -no-show-match -no-sort"
-          "$mod, Period, exec, rofi -modi emoji -show emoji"
+          "$mod, T, exec, wofi -show drun"
+          "$mod, C, exec, wofi -show calc -modi calc -no-show-match -no-sort"
+          "$mod, Period, exec, wofi -modi emoji -show emoji"
 
           "$mod, E, exec, nemo" # File manager
 
@@ -120,8 +120,7 @@ in {
           "$mod, P, togglefloating"
           "$mod, F, fullscreen"
 
-
-                  ", XF86AudioMute, exec, ${pkgs.pulsemixer}/bin/pulsemixer --toggle-mute"
+          ", XF86AudioMute, exec, ${pkgs.pulsemixer}/bin/pulsemixer --toggle-mute"
           ",XF86AudioLowerVolume, exec, ${pkgs.pulsemixer}/bin/pulsemixer --change-volume -5"
           ",XF86AudioRaiseVolume, exec, ${pkgs.pulsemixer}/bin/pulsemixer --change-volume +5 --max-volume 100"
 
@@ -158,7 +157,6 @@ in {
     gtk.enable = true;
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;
-    size = 24;
+    size = 15;
   };
-
 }

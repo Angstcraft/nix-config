@@ -15,8 +15,13 @@
     ./tmux.nix
     ./VSCodium.nix
     ./XArchiver.nix
-   # ./Intellij.nix
-    ./Qute-Browser.nix
+
+    ./Wezterm.nix
+    ./intellij.nix
+    ./qute-browser/Qute-browser.nix
+    #./discord.nix
+    ./Firefox.nix
+
 
   ];
 }

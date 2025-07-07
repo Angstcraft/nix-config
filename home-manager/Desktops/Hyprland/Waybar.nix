@@ -32,8 +32,8 @@
 
       "custom/launcher" = {
         format = " ";
-        on-click = "rofi -show drun";
-        on-click-right = "killall rofi";
+        on-click = "wofi -show drun";
+        on-click-right = "killall wofi";
         tooltip = false;
       };
 
@@ -116,6 +116,7 @@
         exec = "playerctl metadata --format='{{ title }}'";
         on-click = "playerctl play-pause";
         max-length = 50;
+
       };
 
       reload_on_style_change = true;
@@ -180,20 +181,20 @@ tooltip label {
 }
 
 #workspaces button.active {
-    color: #3C4841;
+    color: #a095f3;
     background-color: @color14;
 }
 
 #workspaces button.urgent {
     background-color: #a095f3;
-    color: #3C4841;
+    color: #a095f3;
 	border: 0px solid #a095f3;
 }
 
 #clock {
     background-color: @color14;
     border: 2px solid @background;
-    color: #3C4841;
+    color: #a095f3;
 }
 
 #cpu,

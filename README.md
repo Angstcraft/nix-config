@@ -50,11 +50,14 @@ signing, as well as for SSH'ing around.
 
 Most relevant user apps daily drivers:
 
-- hyprland
-- waybar
-- neovim
-- kitty
-- Rofi
+    Hyprland
+    Waybar
+    Rofi
+
+    Qute browser
+    Nvf
+    Kitty
+    tmux
 
 Nixy stuff:
 

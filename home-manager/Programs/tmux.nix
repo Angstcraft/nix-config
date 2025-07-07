@@ -4,7 +4,7 @@
     enable = true;
     mouse = true;
     shell = "${pkgs.zsh}/bin/zsh";
-    prefix = "C-a";
+    prefix = "C";
     terminal = "kitty";
     keyMode = "vi";
 
@@ -70,4 +70,3 @@
     ];
   };
 }
-

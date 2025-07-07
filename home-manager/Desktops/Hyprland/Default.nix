@@ -3,8 +3,8 @@
   [
     ./Hyprland.nix
     ./Waybar.nix
-    ./rofi.nix
-#    ./rofi/default.nix
+   # ./rofi.nix
+    ./wofi.nix
 
   ];
 }

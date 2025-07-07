@@ -10,7 +10,6 @@
 }: {
   # You can import other NixOS modules here
   imports = [
-
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
 
@@ -26,28 +25,24 @@
     #./modules/nixos/modules/gnome.nix
 
     #inputs.home-manager.nixosModules.home-manager
-
   ];
-    # Enable the X11 windowing system.
+  # Enable the X11 windowing system.
   # Enable the X11 window system (in case you don't have this already)
 
-
-
-services.xserver.enable = true;
-services.xserver.displayManager.lightdm.enable = true;
-programs.hyprland.enable = true;
+  services.xserver.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  programs.hyprland.enable = true;
   # Configure console keymap
   console.keyMap = "de";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-     # Set your time zone.
-   time.timeZone = "Europe/Berlin";
-   i18n.defaultLocale = "en_GB.UTF-8";
+  # Set your time zone.
+  time.timeZone = "Europe/Berlin";
+  i18n.defaultLocale = "en_GB.UTF-8";
 
-   i18n.extraLocaleSettings =
-   {
+  i18n.extraLocaleSettings = {
     LC_ADDRESS = "de_DE.UTF-8";
     LC_IDENTIFICATION = "de_DE.UTF-8";
     LC_MEASUREMENT = "de_DE.UTF-8";
@@ -57,8 +52,7 @@ programs.hyprland.enable = true;
     LC_PAPER = "de_DE.UTF-8";
     LC_TELEPHONE = "de_DE.UTF-8";
     LC_TIME = "de_DE.UTF-8";
-   };
-
+  };
 
   nixpkgs = {
     # You can add overlays here
@@ -85,7 +79,6 @@ programs.hyprland.enable = true;
     };
   };
 
-
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
@@ -104,7 +97,6 @@ programs.hyprland.enable = true;
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
-
 
   # TODO: Set your hostname
   networking.hostName = "nixos";
@@ -127,19 +119,16 @@ programs.hyprland.enable = true;
     };
   };
 
-   # Enable Java with OpenJFX
-  programs.java =
-  {
+  # Enable Java with OpenJFX
+  programs.java = {
     enable = true;
     package = pkgs.openjfx23; # Adjust JDK as needed
   };
 
-
   # List packages installed in system profile. To search, run:
 
-  environment.systemPackages = with pkgs;
-  [
-
+  environment.systemPackages = with pkgs; [
+    rustdesk-flutter
   ];
 
   # This setups a SSH server. Very important if you're setting up a headless system.

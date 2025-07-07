@@ -8,11 +8,10 @@
   ...
 }: {
   imports = [
-
     ./Programs/Default.nix
     ./Desktops/Default.nix
 
-   # ./nixvim.nix
+    # ./nixvim.nix
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     #outputs.homeManagerModules.default
@@ -21,8 +20,6 @@
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
-
-
   ];
 
   nixpkgs = {
@@ -50,41 +47,28 @@
     };
   };
 
-
-
-
-
-#home.file."config/hypr/hyprland.conf".source = ./hyprland.conf;
+  #home.file."config/hypr/hyprland.conf".source = ./hyprland.conf;
   home = {
     username = "alpha";
     homeDirectory = "/home/alpha";
   };
 
-    programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
   programs.git.enable = true;
 
-
-
-    home.packages = with pkgs; [
+  home.packages = with pkgs; [
     git
 
     qtcreator
     texliveFull
     texstudio
+
+    p7zip
     nodejs
 
+    #
 
-  #  qutebrowser
-#
-
-
-
-     jetbrains.idea-community-bin
-      eclipses.eclipse-dsl
-
-      inputs.zen-browser.packages."${system}".default
-
-
+    eclipses.eclipse-dsl
 
     scenic-view
     scenebuilder
@@ -96,17 +80,11 @@
     libreoffice-qt
     hunspell
     hunspellDicts.th_TH
-    rustdesk-flutter
     signal-cli
-
-
-
   ];
-
 
   # Nicely reload sy[stem units when changing configs
   systemd.user.startServices = "sd-switch";
-
 
   home.stateVersion = "25.05";
 }

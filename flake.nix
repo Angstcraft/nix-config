@@ -20,12 +20,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-      # Neovim-Nightly
+    # Neovim-Nightly
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     #Nixvim
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
-
 
     # Spicetify-cli
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
@@ -33,8 +32,7 @@
 
     nvf.url = "github:notashelf/nvf";
 
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
+     nixcord.url = "github:kaylorben/nixcord";
   };
 
   outputs = {
@@ -61,7 +59,6 @@
     # Accessible through 'nix build', 'nix shell', etc
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
-
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
@@ -79,19 +76,19 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
 
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem
-      {
-        specialArgs = {inherit inputs outputs;};
-        modules = [ ./hosts/nixos/configuration.nix ];
-      };
+      nixos =
+        nixpkgs.lib.nixosSystem
+        {
+          specialArgs = {inherit inputs outputs;};
+          modules = [./hosts/nixos/configuration.nix];
+        };
 
-      mac = nixpkgs.lib.nixosSystem
-      {
-        specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/nixos/configuration.nix];
-      };
-
-
+      mac =
+        nixpkgs.lib.nixosSystem
+        {
+          specialArgs = {inherit inputs outputs;};
+          modules = [./hosts/nixos/configuration.nix];
+        };
     };
 
     # Standalone home-manager configuration entrypoint
@@ -103,13 +100,9 @@
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix
-         # ./modules/home-manager/default.nix
+          # ./modules/home-manager/default.nix
         ];
-
       };
     };
-
-
-
   };
 }
