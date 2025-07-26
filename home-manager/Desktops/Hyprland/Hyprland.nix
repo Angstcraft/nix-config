@@ -78,8 +78,8 @@ in {
       windowrulev2 = [
         "opacity 0.80 0.80,class:(qutebrowser)$"
         "opacity 0.80 0.80,class:(intellij)$"
-         "opacity 0.80 0.80,class:^(wofi)$"
-        "opacity 0.80 0.80,class:(jetbrains.idea-community)$"
+        "opacity 0.80 0.80,class:^(wofi)$"
+        "opacity 0.80 0.80,class:(vesktop)$"
 
         "opacity 0.80 0.80,class:^(dolphin)$"
         "opacity 0.80 0.80,class:^(firefox)$"
@@ -126,6 +126,9 @@ in {
 
           ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
           ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+
+          ",XF86MonBrightnessUp, exec, brightness-up" # Brightness Up
+          ",XF86MonBrightnessDown, exec, brightness-down" # Brightness Down
 
           ",XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
 

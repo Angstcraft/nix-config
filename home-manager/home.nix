@@ -53,25 +53,18 @@
     homeDirectory = "/home/alpha";
   };
 
+
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs;
+   [
     git
-
     qtcreator
     texliveFull
     texstudio
-
     p7zip
     nodejs
-
-    #
-
-    eclipses.eclipse-dsl
-
-    scenic-view
-    scenebuilder
     gdb
     cmake
     gqrx
@@ -80,8 +73,20 @@
     libreoffice-qt
     hunspell
     hunspellDicts.th_TH
-    signal-cli
+
+    signal-desktop
+
+    processing
+    ghidra
+
+
+
+
   ];
+
+
+
+
 
   # Nicely reload sy[stem units when changing configs
   systemd.user.startServices = "sd-switch";

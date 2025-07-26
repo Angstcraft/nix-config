@@ -23,16 +23,37 @@
     # Neovim-Nightly
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     #Nixvim
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     # Spicetify-cli
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+
+
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    stylix.url = "github:danth/stylix";
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    nixcord.url = "github:kaylorben/nixcord";
+    sops-nix.url = "github:Mic92/sops-nix";
+    nixarr.url = "github:rasmus-kirk/nixarr";
+    anyrun.url = "github:fufexan/anyrun/launch-prefix";
     nvf.url = "github:notashelf/nvf";
 
-     nixcord.url = "github:kaylorben/nixcord";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
+    search-nixos-api.url = "github:anotherhadi/search-nixos-api";
   };
 
   outputs = {
@@ -100,6 +121,7 @@
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix
+
           # ./modules/home-manager/default.nix
         ];
       };
