@@ -56,7 +56,6 @@
   home.packages = with pkgs; [
     tdf #pdf reader
     gdb
-    peazip
     cmake
     gqrx
     python3

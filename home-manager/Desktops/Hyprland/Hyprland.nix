@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  wallpaper = ./spaci.png;
+  wallpaper = ./wall-e.png;
 in {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -125,6 +125,9 @@ in {
           ", XF86AudioMute, exec, ${pkgs.pulsemixer}/bin/pulsemixer --toggle-mute"
           ",XF86AudioLowerVolume, exec, ${pkgs.pulsemixer}/bin/pulsemixer --change-volume -5"
           ",XF86AudioRaiseVolume, exec, ${pkgs.pulsemixer}/bin/pulsemixer --change-volume +5 --max-volume 100"
+
+          ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
+          ", XF86MonBrightnessDown, exec, brightnessctl set 10% --max-brightness 100"
 
           ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
           ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"

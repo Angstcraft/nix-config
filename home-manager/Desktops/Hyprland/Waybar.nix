@@ -146,7 +146,7 @@
 
       tooltip {
           background-color: @background;
-          border: 2px solid @color14;
+          border: 2px solid rgb(255, 196, 0);
           font-size: 2px;
       }
 
@@ -179,26 +179,26 @@
           padding: 2px 4px;
           color: @color14;
           background-color: @background;
-          border: 2px solid @color14;
+          border: 2px solid rgb(255, 196, 0);
           border-radius: 4px;
           margin-right: 2px;
       }
 
       #workspaces button.active {
-          color: #a095f3;
+          color:#ffc400;
           background-color: @color14;
       }
 
       #workspaces button.urgent {
-          background-color: #a095f3;
-          color: #a095f3;
-      	border: 0px solid #a095f3;
+          background-color: rgb(255, 196, 0);
+          color: rgb(255, 196, 0);
+      	border: 0px solid rgb(255, 196, 0);
       }
 
       #clock {
           background-color: @color14;
           border: 2px solid @background;
-          color:rgb(140, 0, 255);
+          color:rgb(255, 196, 0);
       }
 
       #cpu,
@@ -210,7 +210,7 @@
       #language {
           background-color: @background;
           border: 2px solid @color14;
-          color: @color14;
+          color: rgb(255, 196, 0);
       }
 
       #network {
@@ -226,15 +226,15 @@
 
       #cpu.critical,
       #memory.critical {
-          color: #a095f3;
-          border: 2px solid #a095f3;
+          color: rgb(255, 196, 0);
+          border: 2px solid rgb(255, 196, 0);
       }
 
       #battery.warning,
       #battery.critical,
       #battery.urgent {
-          color: #a095f3;
-          border: 2px solid #a095f3;
+          color: rgb(255, 196, 0);
+          border: 2px solid rgb(255, 196, 0);
       }
 
       #custom-launcher {
@@ -242,7 +242,7 @@
       	padding-left: 10px;
       	padding-right: 5px;
       	transition: none;
-      	color: @color14;
+      	color: rgb(255, 196, 0);
       }
 
       #custom-control {
@@ -250,7 +250,7 @@
       	padding-left: 5px;
       	padding-right: 5px;
       	transition: none;
-      	color: @color14;
+      	color: rgb(255, 196, 0);
       }
 
       #language {
