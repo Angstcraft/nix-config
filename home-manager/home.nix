@@ -8,10 +8,9 @@
   ...
 }: {
   imports = [
-    ./Programs/Default.nix
+    ./programs/default.nix
     ./Desktops/Default.nix
 
-    # ./nixvim.nix
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     #outputs.homeManagerModules.default
@@ -23,7 +22,6 @@
   ];
 
   nixpkgs = {
-    # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
@@ -47,46 +45,25 @@
     };
   };
 
-  #home.file."config/hypr/hyprland.conf".source = ./hyprland.conf;
   home = {
     username = "alpha";
     homeDirectory = "/home/alpha";
   };
 
-
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
-  home.packages = with pkgs;
-   [
-    git
-    qtcreator
-    texliveFull
-    texstudio
-    p7zip
-    nodejs
+  home.packages = with pkgs; [
+    tdf #pdf reader
     gdb
+    peazip
     cmake
     gqrx
     python3
-    python312Packages.jupyterlab
     libreoffice-qt
-    hunspell
-    hunspellDicts.th_TH
-
-    signal-desktop
-
-    processing
-    ghidra
-
-
-
-
+    eclipses.eclipse-java
+    mangayomi
   ];
-
-
-
-
 
   # Nicely reload sy[stem units when changing configs
   systemd.user.startServices = "sd-switch";

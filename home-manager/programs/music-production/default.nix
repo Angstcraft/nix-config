@@ -1,0 +1,7 @@
+{...}:
+{
+  imports =
+  [
+    ./mixxx/mixxx.nix
+  ];
+}

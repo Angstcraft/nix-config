@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  wallpaper = ./mount.jpg;
+  wallpaper = ./spaci.png;
 in {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -21,7 +21,7 @@ in {
         border_size = 0;
         gaps_out = [0 0 0 0];
         "col.active_border" = "0xff006400";
-         animation = [
+        animation = [
           "workspaces, 1, 2.5, easeOutQuart"
           "windows, 1, 2.5, easeOutQuart, slide"
           "fade, 1, 2, easeOutQuart"
@@ -79,6 +79,7 @@ in {
         "opacity 0.80 0.80,class:(qutebrowser)$"
         "opacity 0.80 0.80,class:(intellij)$"
         "opacity 0.80 0.80,class:^(wofi)$"
+        "opacity 0.80 0.80,class:(rofi)$"
         "opacity 0.80 0.80,class:(vesktop)$"
 
         "opacity 0.80 0.80,class:^(dolphin)$"
@@ -104,6 +105,7 @@ in {
         [
           "$mod, Return, exec, kitty"
           "$mod, D, exec, wofi"
+          "$mod, F, exec, rofi"
 
           "$mod, R, exec, kitty --class ${pkgs.clipse}/bin/clipse -e 'clipse'"
 

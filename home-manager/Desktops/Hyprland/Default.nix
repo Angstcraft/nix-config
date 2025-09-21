@@ -1,10 +1,8 @@
 {
-  imports =
-  [
+  imports = [
     ./Hyprland.nix
     ./Waybar.nix
-   # ./rofi.nix
+    ./rofi.nix
     ./wofi.nix
-
   ];
 }

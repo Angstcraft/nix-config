@@ -35,6 +35,7 @@
   # Configure console keymap
   console.keyMap = "de";
 
+  boot.supportedFilesystems = ["ntfs"];
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -42,8 +43,7 @@
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_GB.UTF-8";
 
-
-/**
+  /**
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "de_DE.UTF-8";
     LC_IDENTIFICATION = "de_DE.UTF-8";
@@ -55,7 +55,7 @@
     LC_TELEPHONE = "de_DE.UTF-8";
     LC_TIME = "de_DE.UTF-8";
   };
-*/
+  */
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -125,6 +125,8 @@
 
   environment.systemPackages = with pkgs; [
     rustdesk-flutter
+    docker
+    docker-compose
   ];
 
   # This setups a SSH server. Very important if you're setting up a headless system.
